@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,500&display=swap" rel="stylesheet">
+    <title>Coffee Paws</title>
+</head>
+<body>
+    <header>
+        <!-- Logo Area -->
+        <div class="logo-container">
+            <img src="images/logo.png" alt="The Coffee Paws logo">
+            <span class="shop-name">The Coffee Paws</span>
+        </div>
+
+        <!-- Burger Menu -->
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle menu">
+            <span class="bar1"></span>
+            <span class="bar2"></span>
+            <span class="bar3"></span>
+        </button>
+
+        <!-- Navigation -->
+        <nav id="main-nav">
+            <ul>
+                <li><a href="index.html" class="active" aria-current="page">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="menu.html">Full Menu</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="booking.html">Book Now</a></li>
+            </ul>
+        </nav>
+
+        <!-- Cart -->
+        <button class="cart-toggle" type="button" aria-haspopup="dialog" aria-controls="cart-drawer" aria-label="Open cart">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 8h14l-1 12H6L5 8z"/>
+                <path d="M9 8V6a3 3 0 0 1 6 0v2"/>
+            </svg>
+            <span class="cart-label">Cart</span>
+            <span class="cart-count" data-cart-count hidden>0</span>
+        </button>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="background-image">
+            <img src="images/First-Hero.png" alt="The Coffee Bean">
+        </section>
+        <section id="Container">
+            <div class="Content">
+                <p>Locally Owned Coffee Shop in your nearest community.</p>
+                <h1>Brewing Comfort &amp; Connection, One Cup at a Time.</h1>
+                <h2>More than just coffee - a place to slow down, connect,
+                    and feel at home. Our cozy neighborhood cafe brings people
+                    together through handcrafted coffee, furry paws, freshly brewed favorites
+                    and a welcoming atmosphere where every cup tells a story.</h2>
+                <p>Open 8:00 AM to 10:00 PM | MONDAY TO SUNDAY </p>
+
+                <button type="button" onclick="window.location.href='menu.html'">Order Now </button>
+                <button type="button" onclick="window.location.href="booking.html">Reserve Now</button>
+    
+            </div>
+        </section>
+
+        <!-- Coming Soon & Special Offers -->
+        <section id="coming-soon">
+            <header class="cs-head">
+                <h2>Coming Soon</h2>
+                <p>Sweet things are on the way. Here is a peek at what we are brewing and baking next.</p>
+            </header>
+
+            <!-- Featured: Loyalty Card -->
+            <article class="cs-feature">
+                <div class="cs-photo cs-photo--contain">
+                    <img src="images/Loyalty-card.png" alt="The Coffee Paws loyalty card" loading="lazy">
+                </div>
+                <div class="cs-copy">
+                    <span class="cs-eyebrow">Coming Soon</span>
+                    <h3>Loyalty Card</h3>
+                    <p>Our new card tracks every visit. Collect paw prints with each qualifying purchase and watch the rewards add up, one cup at a time.</p>
+                    <a class="cs-btn" href="about.html">View Offers <span aria-hidden="true">&rarr;</span></a>
+                </div>
+            </article>
+
+            <!-- Featured: Paw of the Day -->
+            <article class="cs-feature">
+                <div class="cs-photo">
+                    <!-- Replace with your own photo -->
+                    <img src="images/paw-of-the-day.png" alt="Paw of the Day" loading="lazy">
+                </div>
+                <div class="cs-copy">
+                    <span class="cs-eyebrow">Featured</span>
+                    <h3>Paw of the Day</h3>
+                    <p>Every day we celebrate one of our furry regulars. Stop by to meet today's paw.</p>
+                </div>
+            </article>
+
+            <!-- Featured: Specialty Combo -->
+            <article class="cs-feature">
+                <div class="cs-photo">
+                    <!-- Replace with your own photo -->
+                    <img src="images/specialty-combo.jpg" alt="A Pawpuccino served with a classic croissant" loading="lazy">
+                </div>
+                <div class="cs-copy">
+                    <span class="cs-eyebrow">Coming Soon</span>
+                    <h3>Specialty Combo</h3>
+                    <p>A signature cup paired with a fresh-baked pastry at a special price. Pick your favorite drink, add a croissant or cinnamon roll, and enjoy the perfect pair.</p>
+                    <a class="cs-btn" href="menu.html">See the Menu <span aria-hidden="true">&rarr;</span></a>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 The Coffee Paws. Open 8:00 AM to 10:00 PM, Monday to Friday.</p>
+    </footer>
+
+<script src="js/cart.js"></script>
+<script>
+  const toggle = document.querySelector('.nav-toggle');
+  const nav = document.getElementById('main-nav');
+
+  function setOpen(open) {
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.classList.toggle('change', open);
+  }
+
+  toggle.addEventListener('click', () => {
+    setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+  });
+
+  // Close the menu after tapping a link or pressing Escape
+  nav.addEventListener('click', e => {
+    if (e.target.closest('a')) setOpen(false);
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') setOpen(false);
+  });
+</script>
+</body>
+</html>

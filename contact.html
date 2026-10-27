@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact The Coffee Paws and share feedback about your café experience.">
+    <link rel="stylesheet" href="CSS/styles.css">
+    <title>Contact &amp; Feedback | The Coffee Paws</title>
+</head>
+<body>
+    <header>
+        <!-- Logo Area -->
+        <div class="logo-container">
+            <img src="images/logo.png" alt="The Coffee Paws logo">
+            <span class="shop-name">The Coffee Paws</span>
+        </div>
+
+        <!-- Burger Menu -->
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle menu">
+            <span class="bar1"></span>
+            <span class="bar2"></span>
+            <span class="bar3"></span>
+        </button>
+
+        <!-- Navigation -->
+        <nav id="main-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="menu.html">Full Menu</a></li>
+                <li><a href="contact.html" class="active" aria-current="page">Contact</a></li>
+                <li><a href="booking.html">Book Now</a></li>
+            </ul>
+        </nav>
+
+        
+
+        <!-- Cart -->
+        <button class="cart-toggle" type="button" aria-haspopup="dialog" aria-controls="cart-drawer" aria-label="Open cart">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 8h14l-1 12H6L5 8z"/>
+                <path d="M9 8V6a3 3 0 0 1 6 0v2"/>
+            </svg>
+            <span class="cart-label">Cart</span>
+            <span class="cart-count" data-cart-count hidden>0</span>
+        </button>
+    </header>
+
+    <main>
+
+        <!-- Contact: intro -->
+        <section class="contact-intro">
+            <div class="contact-intro-text">
+                <p class="about-eyebrow">We’d love to hear from you</p>
+                <h1>Tell us about your Pawfee experience.</h1>
+                <p class="about-lead">
+                    Have a question or visited us recently? Send us a message or share feedback about our drinks, food, service, and pet-friendly experience.
+                </p>
+            </div>
+        </section>
+
+        <!-- Contact details + customer feedback form -->
+        <section class="contact-main">
+
+            <!-- Contact details -->
+            <aside class="contact-info" aria-labelledby="contact-title">
+                <h2 id="contact-title">Get in touch</h2>
+                <p class="section-intro">
+                    Reach out with questions, comments, or suggestions. Your feedback helps us make every visit better.
+                </p>
+
+                <dl class="contact-details">
+                    <div>
+                        <dt>Visit</dt>
+                        <dd>Street address, City</dd>
+                    </div>
+                    <div>
+                        <dt>Open</dt>
+                        <dd>8:00 AM to 10:00 PM, Monday to Sunday</dd>
+                    </div>
+                    <div>
+                        <dt>Call</dt>
+                        <dd><a href="tel:+639000000000">+63 900 000 0000</a></dd>
+                    </div>
+                    <div>
+                        <dt>Email</dt>
+                        <dd><a href="mailto:hello@yourshop.com">hello@yourshop.com</a></dd>
+                    </div>
+                </dl>
+
+                <p class="contact-rates">
+                    Want to book a dog or cat companion? Visit our <a href="booking.html">booking page</a> to request a session.
+                </p>
+            </aside>
+
+
+            <!-- Customer feedback form -->
+            <div class="feedback-panel" id="feedback">
+                <div class="form-thanks" id="feedback-thanks" role="status">
+                    <h2>Thank you for your feedback!</h2>
+                    <p>Your form has been submitted in this demo. Connect a form service to receive customer responses on a live website.</p>
+                    <a class="about-btn outline" href="contact.html">Send another response</a>
+                </div>
+
+                <form class="feedback-form" action="#feedback-thanks" method="get">
+                    <h2>Customer feedback</h2>
+                    <p class="section-intro">Tell us what went well and what we can improve.</p>
+
+                    <div class="form-row">
+                        <label class="field">Your name (optional)
+                            <input type="text" name="customer_name" autocomplete="name" placeholder="Name">
+                        </label>
+                        <label class="field">Email (optional)
+                            <input type="email" name="customer_email" autocomplete="email" placeholder="you@example.com">
+                        </label>
+                    </div>
+
+                    <fieldset class="form-group">
+                        <legend>How was your overall experience?</legend>
+                        <div class="choice-grid choice-grid--hours rating-grid">
+                            <label class="choice"><input type="radio" name="overall_rating" value="5 - Excellent" required><span>5 · Excellent</span></label>
+                            <label class="choice"><input type="radio" name="overall_rating" value="4 - Good"><span>4 · Good</span></label>
+                            <label class="choice"><input type="radio" name="overall_rating" value="3 - Okay"><span>3 · Okay</span></label>
+                            <label class="choice"><input type="radio" name="overall_rating" value="2 - Poor"><span>2 · Poor</span></label>
+                            <label class="choice"><input type="radio" name="overall_rating" value="1 - Very poor"><span>1 · Very poor</span></label>
+                        </div>
+                    </fieldset>
+
+                    <label class="field">What is your feedback about?
+                        <select name="feedback_topic" required>
+                            <option value="" selected disabled>Select a topic</option>
+                            <option>Drinks and food</option>
+                            <option>Staff and customer service</option>
+                            <option>Cleanliness and comfort</option>
+                            <option>Pet companion experience</option>
+                            <option>Website or ordering</option>
+                            <option>Other</option>
+                        </select>
+                    </label>
+
+                    <fieldset class="form-group">
+                        <legend>Would you recommend us to a friend?</legend>
+                        <div class="choice-grid choice-grid--cards">
+                            <label class="choice choice--card"><input type="radio" name="recommend" value="Yes" required><span><strong>Yes</strong><small>Definitely!</small></span></label>
+                            <label class="choice choice--card"><input type="radio" name="recommend" value="Maybe"><span><strong>Maybe</strong><small>Could be</small></span></label>
+                            <label class="choice choice--card"><input type="radio" name="recommend" value="No"><span><strong>No</strong><small>Not yet</small></span></label>
+                        </div>
+                    </fieldset>
+
+                    <label class="field">Comments or suggestions
+                        <textarea name="comments" rows="5" placeholder="Tell us what you enjoyed or what we could improve..." required></textarea>
+                    </label>
+
+                    <div class="form-actions">
+                        <button class="about-btn" type="submit">Submit feedback</button>
+                        <button class="form-reset" type="reset">Clear form</button>
+                    </div>
+                    <p class="form-hint">Please don’t include payment details or other sensitive personal information.</p>
+                </form>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 The Coffee Paws. Open 8:00 AM to 10:00 PM, Monday to Sunday.</p>
+    </footer>
+
+<script src="js/cart.js"></script>
+<script>
+  const toggle = document.querySelector('.nav-toggle');
+  const nav = document.getElementById('main-nav');
+
+  function setOpen(open) {
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.classList.toggle('change', open);
+  }
+
+  toggle.addEventListener('click', () => {
+    setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+  });
+
+  // Close the menu after tapping a link or pressing Escape
+  nav.addEventListener('click', e => {
+    if (e.target.closest('a')) setOpen(false);
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') setOpen(false);
+  });
+</script>
+</body>
+</html>

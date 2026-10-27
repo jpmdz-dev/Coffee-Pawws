@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,500&display=swap" rel="stylesheet">
+    <title>About | The Coffee Paws</title>
+</head>
+<body>
+    <header>
+        <!-- Logo Area -->
+        <div class="logo-container">
+            <img src="images/logo.png" alt="The Coffee Paws logo">
+            <span class="shop-name">The Coffee Paws</span>
+        </div>
+
+        <!-- Burger Menu -->
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle menu">
+            <span class="bar1"></span>
+            <span class="bar2"></span>
+            <span class="bar3"></span>
+        </button>
+
+        <!-- Navigation -->
+        <nav id="main-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active" aria-current="page">About</a></li>
+                <li><a href="menu.html">Full Menu</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="booking.html">Book Now</a></li>
+            </ul>
+        </nav>
+
+        <!-- Cart -->
+        <button class="cart-toggle" type="button" aria-haspopup="dialog" aria-controls="cart-drawer" aria-label="Open cart">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 8h14l-1 12H6L5 8z"/>
+                <path d="M9 8V6a3 3 0 0 1 6 0v2"/>
+            </svg>
+            <span class="cart-label">Cart</span>
+            <span class="cart-count" data-cart-count hidden>0</span>
+        </button>
+    </header>
+
+    <main>
+
+        <!-- About: intro -->
+        <section class="about-hero">
+            <div class="about-hero-text">
+                <p class="about-eyebrow">About The Coffee Paws</p>
+                <h1>Welcome home. Your cup and your furry friend are waiting.</h1>
+                <p class="about-lead">
+                    The Coffee Paws is a locally owned neighborhood cafe built on two simple loves:
+                    good coffee and good company, the furry kind included. Stop by for a quick morning
+                    espresso, a long afternoon with a book, or a catch-up with friends. There is always
+                    a warm seat and a friendly face (or paws) ready for you.
+                </p>
+                <div class="about-actions">
+                    <a class="about-btn" href="menu.html">See the full menu</a>
+                    <a class="about-btn outline" href="booking.html">Book now</a>
+                </div>
+            </div>
+            <img class="about-hero-img" src="images/Coffee-shop.png" alt="Inside The Coffee Paws cafe">
+        </section>
+
+        <!-- About: story -->
+        <section class="about-story">
+            <img src="images/about-story.png" alt="Our baristas preparing drinks at the counter">
+            <div class="about-story-text">
+                <h2>Our story</h2>
+                <p>
+                    We started with a simple idea: a neighborhood place where people slow down,
+                    and where a dog under the table is just another regular.
+                </p>
+                <p>
+                    Every drink is handcrafted, every pastry is baked fresh each morning, and every
+                    guest is treated like a regular from the very first visit.
+                </p>
+            </div>
+        </section>
+
+        <!-- About: values -->
+        <section class="about-values">
+            <h2>What we care about</h2>
+            <ul class="values-list">
+                <li>
+                    <h3>Fresh every day</h3>
+                    <p>Pastries are baked each morning and coffee is brewed to order.</p>
+                </li>
+                <li>
+                    <h3>Pets welcome</h3>
+                    <p>Well-behaved furry guests get water, treats and a spot at your feet.</p>
+                </li>
+                <li>
+                    <h3>Made for company</h3>
+                    <p>Comfy seats, easy conversation and no rush to leave.</p>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Pet departments (rentals) -->
+        <section id="pet-departments" class="pet-departments">
+
+            <div class="pet-intro">
+                <div class="pet-intro-text">
+                    <p class="about-eyebrow">Pet rentals</p>
+                    <h2>Meet our pet departments</h2>
+                    <p class="section-intro">
+                        No pet at home? Spend time with ours. Pick the dog or cat department,
+                        choose how long you want to stay, and enjoy a furry companion with your coffee.
+                    </p>
+
+                    <ol class="rental-steps">
+                        <li>
+                            <strong>Choose your department</strong>
+                            <span>Playful dogs or calm cats, whichever fits your mood.</span>
+                        </li>
+                        <li>
+                            <strong>Pick your hours</strong>
+                            <span>Rent by the hour, from 1 to 3 hours, whatever suits your visit.</span>
+                        </li>
+                        <li>
+                            <strong>Book and relax</strong>
+                            <span>Reserve online or ask at the counter, then settle in.</span>
+                        </li>
+                    </ol>
+                </div>
+
+                <figure class="pets-group">
+                    <img src="images/group-of-pets.jpeg"
+                         alt="The Coffee Paws dogs and cats together, ready to meet you"
+                         loading="lazy">
+                </figure>
+            </div>
+
+            <div class="pet-dept-grid">
+
+                <!-- Dogs -->
+                <article class="pet-dept">
+                    <div class="pet-dept-photo">
+                        <img src="images/dog-department.png"
+                             alt="A friendly dog waiting to be rented at The Coffee Paws"
+                             loading="lazy">
+                        <span class="cs-eyebrow">Dog department</span>
+                    </div>
+                    <div class="pet-dept-body">
+                        <h3>Dogs</h3>
+                        <p>Playful, friendly and always happy to see you. Our dogs love cuddles, treats and a good scratch behind the ears.</p>
+
+                        <p class="pet-label">Meet the pack</p>
+                        <ul class="pet-roster" aria-label="Our dogs">
+                            <li>
+                                <img src="images/pet-max.png" alt="Max the dog" loading="lazy">
+                                Max
+                            </li>
+                            <li>
+                                <img src="images/pet-bella.png" alt="Bella the dog" loading="lazy">
+                                Bella
+                            </li>
+                            <li>
+                                <img src="images/pet-cooper.png" alt="Cooper the dog" loading="lazy">
+                                Cooper
+                            </li>
+                        </ul>
+
+                        <p class="pet-label">Rental hours</p>
+                        <ul class="rental-options" aria-label="Dog rental options">
+                            <li><span>1 hour</span><span class="rental-price">₱150</span></li>
+                            <li><span>2 hours</span><span class="rental-tag">Most popular</span><span class="rental-price">₱280</span></li>
+                            <li><span>3 hours</span><span class="rental-price">₱400</span></li>
+                        </ul>
+
+                        <a class="about-btn" href="booking.html">Rent a dog</a>
+                    </div>
+                </article>
+
+                <!-- Cats -->
+                <article class="pet-dept">
+                    <div class="pet-dept-photo">
+                        <img src="images/cat-department.png"
+                             alt="A calm cat waiting to be rented at The Coffee Paws"
+                             loading="lazy">
+                        <span class="cs-eyebrow">Cat department</span>
+                    </div>
+                    <div class="pet-dept-body">
+                        <h3>Cats</h3>
+                        <p>Calm, curious and cozy. Our cats are the perfect company for a quiet read, a slow coffee or a lap nap.</p>
+
+                        <p class="pet-label">Meet the cats</p>
+                        <ul class="pet-roster" aria-label="Our cats">
+                            <li>
+                                <img src="images/pet-luna.png" alt="Luna the cat" loading="lazy">
+                                Luna
+                            </li>
+                            <li>
+                                <img src="images/pet-milo.png" alt="Milo the cat" loading="lazy">
+                                Milo
+                            </li>
+                            <li>
+                                <img src="images/pet-oliver.png" alt="Oliver the cat" loading="lazy">
+                                Oliver
+                            </li>
+                            <li>
+                                <img src="images/pet-mochi.png" alt="Mochi the cat" loading="lazy">
+                                Mochi
+                            </li>
+                        </ul>
+
+                        <p class="pet-label">Rental hours</p>
+                        <ul class="rental-options" aria-label="Cat rental options">
+                            <li><span>1 hour</span><span class="rental-price">₱150</span></li>
+                            <li><span>2 hours</span><span class="rental-tag">Most popular</span><span class="rental-price">₱280</span></li>
+                            <li><span>3 hours</span><span class="rental-price">₱400</span></li>
+                        </ul>
+
+                        <a class="about-btn" href="booking.html">Rent a cat</a>
+                    </div>
+                </article>
+
+            </div>
+
+            <p class="pet-note">
+                Prices are per pet. Walk-ins are welcome when a pet is free, and booking ahead saves your spot.
+            </p>
+        </section>
+
+        <!--Special Offers-->
+        <section id="special-offers">
+            <h2>Special Offers</h2>
+            <p class="offers-intro">Special treats for you, and a little something for your furry friend.</p>
+
+            <div class="offers-grid">
+                <article class="offer-card">
+                    <span class="offer-badge">Daily Offers</span>
+                    <h3>Early Bird Brews</h3>
+                    <p>15% off all drinks from 8:00 to 9:30 AM.</p>
+                </article>
+
+                <article class="offer-card">
+                    <span class="offer-badge">Loyalty</span>
+                    <h3>10th Cup Free</h3>
+                    <p>Collect a paw stamp with every drink you buy.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Featured Drinks -->
+        <section id="featured-drinks">
+            <h2>Featured Drinks for Cold Seasons</h2>
+            <p class="drinks-intro">Our most-ordered cups, brewed fresh and made to be shared with good company.</p>
+
+            <ul class="drinks-list">
+                <li class="drink">
+                    <img src="images/Capuccino.png" alt="A Pawpuccino with a paw print in the foam">
+                    <div class="drink-info">
+                        <div class="drink-head">
+                            <h3>Pawpuccino</h3>
+                            <span class="drink-leader" aria-hidden="true"></span>
+                            <span class="drink-price">₱150</span>
+                        </div>
+                        <p>Espresso, steamed milk and a thick cap of foam with a paw print on top.</p>
+                        <span class="drink-tag">Hot or iced</span>
+                        <button class="add-to-cart" type="button" data-name="Pawpuccino" data-price="150" aria-label="Order Pawpuccino now">Order now</button>
+                    </div>
+                </li>
+
+                <li class="drink">
+                    <img src="images/Hot-Americano.png" alt="A steaming cup of hot Americano">
+                    <div class="drink-info">
+                        <div class="drink-head">
+                            <h3>Hot Americano</h3>
+                            <span class="drink-leader" aria-hidden="true"></span>
+                            <span class="drink-price">₱120</span>
+                        </div>
+                        <p>Two shots of espresso with hot water. Bold, clean and simple.</p>
+                        <span class="drink-tag">Hot</span>
+                        <button class="add-to-cart" type="button" data-name="Hot Americano" data-price="120" aria-label="Order Hot Americano now">Order now</button>
+                    </div>
+                </li>
+
+                <li class="drink">
+                    <img src="images/Latte.png" alt="A hot latte with smooth latte art">
+                    <div class="drink-info">
+                        <div class="drink-head">
+                            <h3>Cozy Latte</h3>
+                            <span class="drink-leader" aria-hidden="true"></span>
+                            <span class="drink-price">₱145</span>
+                        </div>
+                        <p>Smooth espresso with silky steamed milk and a light layer of foam.</p>
+                        <span class="drink-tag">Hot</span>
+                        <button class="add-to-cart" type="button" data-name="Cozy Latte" data-price="145" aria-label="Order Cozy Latte now">Order now</button>
+                    </div>
+                </li>
+
+                <li class="drink">
+                    <img src="images/Mocha.png" alt="A hot mocha topped with whipped cream">
+                    <div class="drink-info">
+                        <div class="drink-head">
+                            <h3>Cozy Mocha</h3>
+                            <span class="drink-leader" aria-hidden="true"></span>
+                            <span class="drink-price">₱160</span>
+                        </div>
+                        <p>Dark chocolate, espresso and steamed milk, topped with whipped cream.</p>
+                        <span class="drink-tag">Hot</span>
+                        <button class="add-to-cart" type="button" data-name="Cozy Mocha" data-price="160" aria-label="Order Cozy Mocha now">Order now</button>
+                    </div>
+                </li>
+
+                <li class="drink">
+                    <img src="images/Hot-Espresso.png" alt="A hot espresso shot in a small cup with golden crema">
+                    <div class="drink-info">
+                        <div class="drink-head">
+                            <h3>Hot Espresso</h3>
+                            <span class="drink-leader" aria-hidden="true"></span>
+                            <span class="drink-price">₱110</span>
+                        </div>
+                        <p>A bold, concentrated shot of espresso with a rich golden crema.</p>
+                        <span class="drink-tag">Hot</span>
+                        <button class="add-to-cart" type="button" data-name="Hot Espresso" data-price="110" aria-label="Order Hot Espresso now">Order now</button>
+                    </div>
+                </li>
+
+                <li class="drink">
+                    <img src="images/Caramel-Machiato.png" alt="A caramel macchiato with a caramel drizzle on top">
+                    <div class="drink-info">
+                        <div class="drink-head">
+                            <h3>Caramel Macchiato</h3>
+                            <span class="drink-leader" aria-hidden="true"></span>
+                            <span class="drink-price">₱165</span>
+                        </div>
+                        <p>Vanilla-sweetened milk marked with espresso and finished with a caramel drizzle.</p>
+                        <span class="drink-tag">Hot or iced</span>
+                        <button class="add-to-cart" type="button" data-name="Caramel Macchiato" data-price="165" aria-label="Order Caramel Macchiato now">Order now</button>
+                    </div>
+                </li>
+
+                <!-- Copy any <li> above for each new drink -->
+            </ul>
+
+            <a class="drinks-link" href="menu.html">See the full menu</a>
+        </section>
+
+        <!-- Featured Pastries -->
+        <section id="featured-pastries">
+            <h2>Featured Pastries</h2>
+            <p class="drinks-intro">Baked fresh every morning, and the perfect partner for your cup.</p>
+
+            <ul class="drinks-list">
+                <li class="drink">
+                    <img src="images/Classic-Croissant.png" alt="A golden, flaky classic croissant">
+                    <div class="drink-info">
+                        <div class="drink-head">
+                            <h3>Classic Croissant</h3>
+                            <span class="drink-leader" aria-hidden="true"></span>
+                            <span class="drink-price">₱95</span>
+                        </div>
+                        <p>Buttery, golden and flaky, with a soft layered center.</p>
+                        <span class="drink-tag">Baked daily</span>
+                        <button class="add-to-cart" type="button" data-name="Classic Croissant" data-price="95" aria-label="Order Classic Croissant now">Order now</button>
+                    </div>
+                </li>
+
+                <li class="drink">
+                    <img src="images/Chocolate-Croissant.png" alt="A chocolate croissant with a dark chocolate filling">
+                    <div class="drink-info">
+                        <div class="drink-head">
+                            <h3>Chocolate Croissant</h3>
+                            <span class="drink-leader" aria-hidden="true"></span>
+                            <span class="drink-price">₱115</span>
+                        </div>
+                        <p>Flaky pastry wrapped around rich, melted dark chocolate.</p>
+                        <span class="drink-tag">Best with a latte</span>
+                        <button class="add-to-cart" type="button" data-name="Chocolate Croissant" data-price="115" aria-label="Order Chocolate Croissant now">Order now</button>
+                    </div>
+                </li>
+
+                <li class="drink">
+                    <img src="images/Cinnamon-Roll.png" alt="A warm cinnamon roll with icing">
+                    <div class="drink-info">
+                        <div class="drink-head">
+                            <h3>Cinnamon Roll</h3>
+                            <span class="drink-leader" aria-hidden="true"></span>
+                            <span class="drink-price">₱125</span>
+                        </div>
+                        <p>Soft, warm dough swirled with cinnamon sugar and finished with sweet icing.</p>
+                        <span class="drink-tag">Served warm</span>
+                        <button class="add-to-cart" type="button" data-name="Cinnamon Roll" data-price="125" aria-label="Order Cinnamon Roll now">Order now</button>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- About: visit -->
+        <section class="about-visit">
+            <div>
+                <h2>Visit us</h2>
+                <p class="section-intro">Walk in any time we are open. Groups of five or more can reserve a table.</p>
+            </div>
+            <dl class="visit-hours">
+                <div><dt>Monday to Sunday</dt><dd>8:00 AM to 10:00 PM</dd></div>
+            </dl>
+        </section>
+
+        <!-- About: closing call to action -->
+        <section class="about-cta">
+            <h2>Your cup and your furry friend are waiting</h2>
+            <p>Order ahead or save a table for you and your friends.</p>
+            <div class="about-actions">
+                <a class="about-btn" href="menu.html">Order now</a>
+                <a class="about-btn outline" href="booking.html">Book now</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 The Coffee Paws. Open 8:00 AM to 10:00 PM, Monday to Sunday.</p>
+    </footer>
+
+<script src="js/cart.js"></script>
+<script>
+  const toggle = document.querySelector('.nav-toggle');
+  const nav = document.getElementById('main-nav');
+
+  function setOpen(open) {
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.classList.toggle('change', open);
+  }
+
+  toggle.addEventListener('click', () => {
+    setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+  });
+
+  // Close the menu after tapping a link or pressing Escape
+  nav.addEventListener('click', e => {
+    if (e.target.closest('a')) setOpen(false);
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') setOpen(false);
+  });
+</script>
+</body>
+</html>

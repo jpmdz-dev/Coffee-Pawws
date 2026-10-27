@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Discover specialty coffee, freshly baked pastries, and cozy café favorites at The Coffee Paws.">
+
+    <title>Full Menu | The Coffee Paws</title>
+
+    <link rel="stylesheet" href="CSS/styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <a href="index.html" class="logo-container" aria-label="The Coffee Paws Home">
+            <img src="images/logo.png" alt="The Coffee Paws logo">
+            <span class="shop-name">The Coffee Paws</span>
+        </a>
+
+        <!-- Mobile Navigation Toggle -->
+        <button class="nav-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="main-nav"
+                aria-label="Toggle navigation">
+            <span class="bar1"></span>
+            <span class="bar2"></span>
+            <span class="bar3"></span>
+        </button>
+
+        <!-- Navigation -->
+        <nav id="main-nav" aria-label="Main navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="menu.html" class="active" aria-current="page">Full Menu</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="booking.html">Book Now</a></li>
+            </ul>
+        </nav>
+
+        <!-- Shopping Cart -->
+        <button class="cart-toggle"
+                type="button"
+                aria-haspopup="dialog"
+                aria-controls="cart-drawer"
+                aria-label="Open shopping cart">
+            <svg viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="2"
+                 stroke-linecap="round"
+                 stroke-linejoin="round"
+                 aria-hidden="true">
+                <path d="M5 8h14l-1 12H6L5 8z"/>
+                <path d="M9 8V6a3 3 0 0 1 6 0v2"/>
+            </svg>
+
+            <span class="cart-label">Cart</span>
+            <span class="cart-count" data-cart-count hidden>0</span>
+        </button>
+    </header>
+
+    <main>
+
+        <!-- WELCOME BANNER -->
+        <section class="menu-welcome" aria-labelledby="welcome-title">
+            <div class="welcome-content">
+                <span class="welcome-label">☕ BREWED WITH LOVE</span>
+
+                <h1 id="welcome-title">Welcome to Our Menu</h1>
+
+                <p>
+                    Your favorite coffee, freshly baked treats,
+                    and a little happiness in every visit.
+                    Good coffee is even better with happy paws!
+                </p>
+
+                <a href="#featured-drinks" class="welcome-btn">
+                    Explore Our Menu ↓
+                </a>
+            </div>
+
+            <div class="welcome-paw" aria-hidden="true">🐾</div>
+        </section>
+
+        <!-- MENU CATEGORY SHORTCUTS -->
+        <nav class="menu-categories" aria-label="Menu categories">
+            <a href="#featured-drinks">☕ Hot Drinks</a>
+            <a href="#cold-drinks">🧊 Cold Drinks</a>
+            <a href="#featured-pastries">🥐 Pastries &amp; Sweets</a>
+            <a href="#pastas">🍝 Pasta</a>
+            <a href="#pet-corner">🐾 Pet-Friendly Café</a>
+        </nav>
+
+        <!-- HOT DRINKS -->
+        <section id="featured-drinks" class="menu-section">
+            <div class="section-heading">
+                <span class="section-kicker">YOUR DAILY COMFORT</span>
+                <h2>Hot Drinks</h2>
+                <p class="drinks-intro">
+                    Brewed fresh and made to be shared with good company.
+                </p>
+            </div>
+
+            <ul class="drinks-list drinks-row">
+
+                <!-- Cozy Latte -->
+                <li class="drink">
+                    <img src="images/Latte.png"
+                         alt="A hot latte with smooth latte art"
+                         loading="lazy">
+
+                    <div class="drink-info">
+                        <div class="drink-head">
+                            <h3>Cozy Latte</h3>
+                            <span class="drink-price">₱145</span>
+                        </div>
+
+                        <p>
+                            Smooth espresso with silky steamed milk
+                            and a light layer of foam.
+                        </p>
+
+                        <span class="drink-tag">BESTSELLER</span>
+
+                        <button class="add-to-cart"
+                                type="button"
+                                data-name="Cozy Latte"
+                                data-price="145"
+                                aria-label="Order Cozy Latte">
+                            Order Now <span aria-hidden="true">+</span>
+                        </button>
+                    </div>
+                </li>
+
+                <!-- Hot Americano -->
+                <li class="drink">
+                    <img src="images/Hot-Americano.png"
+                         alt="A steaming cup of hot Americano"
+                         loading="lazy">
+
+                    <div class="drink-info">
+                        <div class="drink-head">
+                            <h3>Hot Americano</h3>
+                            <span class="drink-price">₱120</span>
+                        </div>
+
+                        <p>
+                            Two shots of espresso with hot water.
+                            Bold, clean, and simple.
+                        </p>
+
+                        <span class="drink-tag">COFFEE CLASSIC</span>
+
+                        <button class="add-to-cart"
+                                type="button"
+                                data-name="Hot Americano"
+                                data-price="120"
+                                aria-label="Order Hot Americano">
+                            Order Now <span aria-hidden="true">+</span>
+                        </button>
+                    </div>
+                </li>
+
+                <!-- Cozy Mocha -->
+                <li class="drink">
+                    <img src="images/Mocha.png"
+                         alt="A hot mocha topped with whipped cream"
+                         loading="lazy">
+
+                    <div class="drink-info">
+                        <div class="drink-head">
+                            <h3>Cozy Mocha</h3>
+                            <span class="drink-price">₱160</span>
+                        </div>
+
+                        <p>
+                            Dark chocolate, espresso, and steamed milk,
+                            topped with whipped cream.
+                        </p>
+
+                        <span class="drink-tag">CHOCOLATE FAVORITE</span>
+
+                        <button class="add-to-cart"
+                                type="button"
+                                data-name="Cozy Mocha"
+                                data-price="160"
+                                aria-label="Order Cozy Mocha">
+                            Order Now <span aria-hidden="true">+</span>
+                        </button>
+                    </div>
+                </li>
+
+                <!-- Hot Espresso -->
+                <li class="drink">
+                    <img src="images/Hot-Espresso.png"
+                         alt="A hot espresso shot with golden crema"
+                         loading="lazy">
+
+                    <div class="drink-info">
+                        <div class="drink-head">
+                            <h3>Hot Espresso</h3>
+                            <span class="drink-price">₱110</span>
+                        </div>
+
+                        <p>
+                            A bold, concentrated shot of espresso
+                            with a rich golden crema.
+                        </p>
+
+                        <span class="drink-tag">BOLD &amp; RICH</span>
+
+                        <button class="add-to-cart"
+                                type="button"
+                                data-name="Hot Espresso"
+                                data-price="110"
+                                aria-label="Order Hot Espresso">
+                            Order Now <span aria-hidden="true">+</span>
+                        </button>
+                    </div>
+                </li>
+
+            </ul>
+        </section>
+
+        <!-- COLD DRINKS -->
+        <section id="cold-drinks" class="menu-section">
+            <div class="section-heading">
+                <span class="section-kicker">COOL &amp; REFRESHING</span>
+                <h2>Cold Drinks</h2>
+                <p class="drinks-intro">
+                    Chilled, iced and made to be shared on a warm day.
+                </p>
+            </div>
+
+            <ul class="drinks-list drinks-row">
+
+                <li class="drink">
+                    <img src="images/Iced-Latte.png"
+                         alt="An iced latte with milk swirling into espresso"
+                         loading="lazy">
+
+                    <div class="drink-info">
+                        <div class="drink-head">
+                            <h3>Iced Latte</h3>
+                            <span class="drink-price">₱155</span>
+                        </div>
+
+                        <p>
+                            Chilled espresso over ice with cold, creamy milk.
+                        </p>
+
+                        <span class="drink-tag">REFRESHING</span>
+
+                        <button class="add-to-cart"
+                                type="button"
+                                data-name="Iced Latte"
+                                data-price="155"
+                                aria-label="Order Iced Latte">
+                            Order Now <span aria-hidden="true">+</span>
+                        </button>
+                    </div>
+                </li>
+
+                <li class="drink">
+                    <img src="images/Iced-Americano.png"
+                         alt="An iced Americano in a tall glass"
+                         loading="lazy">
+
+                    <div class="drink-info">
+                        <div class="drink-head">
+                            <h3>Iced Americano</h3>
+                            <span class="drink-price">₱130</span>
+                        </div>
+
+                        <p>
+                            Two shots of espresso over ice and cold water. Crisp and clean.
+                        </p>
+
+                        <span class="drink-tag">COFFEE CLASSIC</span>
+
+                        <button class="add-to-cart"
+                                type="button"
+                                data-name="Iced Americano"
+                                data-price="130"
+                                aria-label="Order Iced Americano">
+                            Order Now <span aria-hidden="true">+</span>
+                        </button>
+                    </div>
+                </li>
+
+                <li class="drink">
+                    <img src="images/Iced-Mocha.png"
+                         alt="An iced mocha topped with whipped cream"
+                         loading="lazy">
+
+                    <div class="drink-info">
+                        <div class="drink-head">
+                            <h3>Iced Mocha</h3>
+                            <span class="drink-price">₱170</span>
+                        </div>
+
+                        <p>
+                            Dark chocolate, espresso and cold milk over ice, topped with whipped cream.
+                        </p>
+
+                        <span class="drink-tag">CHOCOLATE FAVORITE</span>
+
+                        <button class="add-to-cart"
+                                type="button"
+                                data-name="Iced Mocha"
+                                data-price="170"
+                                aria-label="Order Iced Mocha">
+                            Order Now <span aria-hidden="true">+</span>
+                        </button>
+                    </div>
+                </li>
+
+                <li class="drink">
+                    <img src="images/Iced-Caramel-Macchiato.png"
+                         alt="An iced caramel macchiato with caramel drizzle"
+                         loading="lazy">
+
+                    <div class="drink-info">
+                        <div class="drink-head">
+                            <h3>Iced Caramel Macchiato</h3>
+                            <span class="drink-price">₱175</span>
+                        </div>
+
+                        <p>
+                            Vanilla milk over ice, marked with espresso and a caramel drizzle.
+                        </p>
+
+                        <span class="drink-tag">SWEET &amp; SMOOTH</span>
+
+                        <button class="add-to-cart"
+                                type="button"
+                                data-name="Iced Caramel Macchiato"
+                                data-price="175"
+                                aria-label="Order Iced Caramel Macchiato">
+                            Order Now <span aria-hidden="true">+</span>
+                        </button>
+                    </div>
+                </li>
+
+            </ul>
+        </section>
+
+
+        <!-- SPECIAL TREATS -->
+        <section id="featured-pastries" class="menu-section menu-section--tint">
+            <div class="section-heading">
+                <span class="section-kicker">FRESH FROM THE OVEN</span>
+                <h2>Special Treats</h2>
+                <p class="drinks-intro">
+                    Baked fresh every morning and the perfect partner for your cup.
+                </p>
+            </div>
+
+            <ul class="drinks-list">
+
+                <!-- Classic Croissant -->
+                <li class="drink">
+                    <img src="images/Classic-Croissant.png"
+                         alt="A golden, flaky classic croissant"
+                         loading="lazy">
+
+                    <div class="drink-info">
+                        <div class="drink-head">
+                            <h3>Classic Croissant</h3>
+                            <span class="drink-price">₱95</span>
+                        </div>
+
+                        <p>
+                            Buttery, golden, and flaky,
+                            with a soft layered center.
+                        </p>
+
+                        <span class="drink-tag">BAKED DAILY</span>
+
+                        <button class="add-to-cart"
+                                type="button"
+                                data-name="Classic Croissant"
+                                data-price="95"
+                                aria-label="Order Classic Croissant">
+                            Order Now <span aria-hidden="true">+</span>
+                        </button>
+                    </div>
+                </li>
+
+                <!-- Cinnamon Roll -->
+                <li class="drink">
+                    <img src="images/Cinnamon-Roll.png"
+                         alt="A warm cinnamon roll with sweet icing"
+                         loading="lazy">
+
+                    <div class="drink-info">
+                        <div class="drink-head">
+                            <h3>Cinnamon Roll</h3>
+                            <span class="drink-price">₱125</span>
+                        </div>
+
+                        <p>
+                            Soft dough swirled with cinnamon sugar
+                            and finished with sweet icing.
+                        </p>
+
+                        <span class="drink-tag">SERVED WARM</span>
+
+                        <button class="add-to-cart"
+                                type="button"
+                                data-name="Cinnamon Roll"
+                                data-price="125"
+                                aria-label="Order Cinnamon Roll">
+                            Order Now <span aria-hidden="true">+</span>
+                        </button>
+                    </div>
+                </li>
+
+                <!-- Red Velvet Cake -->
+                <li class="drink">
+                    <img src="images/RedVelvet-Cake.png"
+                         alt="A slice of red velvet cake with cream cheese frosting"
+                         loading="lazy">
+
+                    <div class="drink-info">
+                        <div class="drink-head">
+                            <h3>Red Velvet Cake</h3>
+                            <span class="drink-price">₱140</span>
+                        </div>
+
+                        <p>
+                            Soft, cocoa-kissed layers
+                            with smooth cream cheese frosting.
+                        </p>
+
+                        <span class="drink-tag">BY THE SLICE</span>
+
+                        <button class="add-to-cart"
+                                type="button"
+                                data-name="Red Velvet Cake"
+                                data-price="140"
+                                aria-label="Order Red Velvet Cake">
+                            Order Now <span aria-hidden="true">+</span>
+                        </button>
+                    </div>
+                </li>
+
+                <li class="drink">
+                    <img src="images/Paw-Print-Cookie.png"
+                         alt="A sugar cookie with a paw print on top"
+                         loading="lazy">
+
+                    <div class="drink-info">
+                        <div class="drink-head">
+                            <h3>Paw Print Sugar Cookie</h3>
+                            <span class="drink-price">₱75</span>
+                        </div>
+
+                        <p>
+                            Soft buttery sugar cookie stamped with our signature paw print.
+                        </p>
+
+                        <span class="drink-tag">SIGNATURE</span>
+
+                        <button class="add-to-cart"
+                                type="button"
+                                data-name="Paw Print Sugar Cookie"
+                                data-price="75"
+                                aria-label="Order Paw Print Sugar Cookie">
+                            Order Now <span aria-hidden="true">+</span>
+                        </button>
+                    </div>
+                </li>
+
+                <li class="drink">
+                    <img src="images/Choco-Chip-Paw-Cookie.png"
+                         alt="A chocolate chip cookie shaped like a paw print"
+                         loading="lazy">
+
+                    <div class="drink-info">
+                        <div class="drink-head">
+                            <h3>Choco Chip Paw Cookie</h3>
+                            <span class="drink-price">₱85</span>
+                        </div>
+
+                        <p>
+                            Chewy cookie loaded with chocolate chips, shaped like a paw.
+                        </p>
+
+                        <span class="drink-tag">CHEWY</span>
+
+                        <button class="add-to-cart"
+                                type="button"
+                                data-name="Choco Chip Paw Cookie"
+                                data-price="85"
+                                aria-label="Order Choco Chip Paw Cookie">
+                            Order Now <span aria-hidden="true">+</span>
+                        </button>
+                    </div>
+                </li>
+
+                <li class="drink">
+                    <img src="images/Peanut-Butter-Paw-Cookie.png"
+                         alt="A peanut butter cookie with a paw print pressed on top"
+                         loading="lazy">
+
+                    <div class="drink-info">
+                        <div class="drink-head">
+                            <h3>Peanut Butter Paw Cookie</h3>
+                            <span class="drink-price">₱85</span>
+                        </div>
+
+                        <p>
+                            Rich peanut butter cookie with a paw print pressed on top.
+                        </p>
+
+                        <span class="drink-tag">NUTTY</span>
+
+                        <button class="add-to-cart"
+                                type="button"
+                                data-name="Peanut Butter Paw Cookie"
+                                data-price="85"
+                                aria-label="Order Peanut Butter Paw Cookie">
+                            Order Now <span aria-hidden="true">+</span>
+                        </button>
+                    </div>
+                </li>
+
+            </ul>
+        </section>
+
+        <!-- PASTA -->
+        <section id="pastas" class="menu-section">
+            <div class="section-heading">
+                <span class="section-kicker">HEARTY &amp; WARM</span>
+                <h2>Pasta</h2>
+                <p class="drinks-intro">
+                    Cooked to order and served hot, a proper meal to go with your cup.
+                </p>
+            </div>
+
+            <ul class="drinks-list drinks-row">
+
+                <li class="drink">
+                    <img src="images/Creamy-Carbonara.png"
+                         alt="A plate of creamy carbonara pasta"
+                         loading="lazy">
+
+                    <div class="drink-info">
+                        <div class="drink-head">
+                            <h3>Creamy Carbonara</h3>
+                            <span class="drink-price">₱220</span>
+                        </div>
+
+                        <p>
+                            Silky cream sauce with crispy bacon and a dusting of parmesan.
+                        </p>
+
+                        <span class="drink-tag">COMFORT FOOD</span>
+
+                        <button class="add-to-cart"
+                                type="button"
+                                data-name="Creamy Carbonara"
+                                data-price="220"
+                                aria-label="Order Creamy Carbonara">
+                            Order Now <span aria-hidden="true">+</span>
+                        </button>
+                    </div>
+                </li>
+
+                <li class="drink">
+                    <img src="images/Tomato-Basil-Pasta.png"
+                         alt="A plate of tomato basil pasta"
+                         loading="lazy">
+
+                    <div class="drink-info">
+                        <div class="drink-head">
+                            <h3>Tomato Basil Pasta</h3>
+                            <span class="drink-price">₱200</span>
+                        </div>
+
+                        <p>
+                            Slow-simmered tomato sauce, fresh basil and a little garlic.
+                        </p>
+
+                        <span class="drink-tag">CLASSIC</span>
+
+                        <button class="add-to-cart"
+                                type="button"
+                                data-name="Tomato Basil Pasta"
+                                data-price="200"
+                                aria-label="Order Tomato Basil Pasta">
+                            Order Now <span aria-hidden="true">+</span>
+                        </button>
+                    </div>
+                </li>
+
+                <li class="drink">
+                    <img src="images/Spaghetti-Bolognese.jpg"
+                         alt="A plate of spaghetti with rich meat sauce"
+                         loading="lazy">
+
+                    <div class="drink-info">
+                        <div class="drink-head">
+                            <h3>Spaghetti Bolognese</h3>
+                            <span class="drink-price">₱215</span>
+                        </div>
+
+                        <p>
+                            Slow-cooked beef and tomato sauce over spaghetti, finished with parmesan.
+                        </p>
+
+                        <span class="drink-tag">HEARTY</span>
+
+                        <button class="add-to-cart"
+                                type="button"
+                                data-name="Spaghetti Bolognese"
+                                data-price="215"
+                                aria-label="Order Spaghetti Bolognese">
+                            Order Now <span aria-hidden="true">+</span>
+                        </button>
+                    </div>
+                </li>
+
+                <li class="drink">
+                    <img src="images/Pesto-Chicken-Pasta.jpg"
+                         alt="A plate of pasta with pesto and grilled chicken"
+                         loading="lazy">
+
+                    <div class="drink-info">
+                        <div class="drink-head">
+                            <h3>Pesto Chicken Pasta</h3>
+                            <span class="drink-price">₱230</span>
+                        </div>
+
+                        <p>
+                            Tender grilled chicken tossed in fresh basil pesto and pasta.
+                        </p>
+
+                        <span class="drink-tag">FRESH &amp; HERBY</span>
+
+                        <button class="add-to-cart"
+                                type="button"
+                                data-name="Pesto Chicken Pasta"
+                                data-price="230"
+                                aria-label="Order Pesto Chicken Pasta">
+                            Order Now <span aria-hidden="true">+</span>
+                        </button>
+                    </div>
+                </li>
+
+                <li class="drink">
+                    <img src="images/Aglio-e-Olio.jpg"
+                         alt="A plate of spaghetti with garlic and olive oil"
+                         loading="lazy">
+
+                    <div class="drink-info">
+                        <div class="drink-head">
+                            <h3>Aglio e Olio</h3>
+                            <span class="drink-price">₱190</span>
+                        </div>
+
+                        <p>
+                            Spaghetti tossed in garlic, olive oil and a pinch of chili.
+                        </p>
+
+                        <span class="drink-tag">SIMPLE &amp; BOLD</span>
+
+                        <button class="add-to-cart"
+                                type="button"
+                                data-name="Aglio e Olio"
+                                data-price="190"
+                                aria-label="Order Aglio e Olio">
+                            Order Now <span aria-hidden="true">+</span>
+                        </button>
+                    </div>
+                </li>
+
+                <li class="drink">
+                    <img src="images/Baked-Mac-and-Cheese.jpg"
+                         alt="A baked macaroni and cheese with a golden top"
+                         loading="lazy">
+
+                    <div class="drink-info">
+                        <div class="drink-head">
+                            <h3>Baked Mac &amp; Cheese</h3>
+                            <span class="drink-price">₱210</span>
+                        </div>
+
+                        <p>
+                            Creamy three-cheese pasta baked until bubbly and golden.
+                        </p>
+
+                        <span class="drink-tag">KID FAVORITE</span>
+
+                        <button class="add-to-cart"
+                                type="button"
+                                data-name="Baked Mac &amp; Cheese"
+                                data-price="210"
+                                aria-label="Order Baked Mac &amp; Cheese">
+                            Order Now <span aria-hidden="true">+</span>
+                        </button>
+                    </div>
+                </li>
+
+                <li class="drink">
+                    <img src="images/Creamy-Mushroom-Pasta.jpg"
+                         alt="A plate of pasta in creamy mushroom sauce"
+                         loading="lazy">
+
+                    <div class="drink-info">
+                        <div class="drink-head">
+                            <h3>Creamy Mushroom Pasta</h3>
+                            <span class="drink-price">₱215</span>
+                        </div>
+
+                        <p>
+                            Sauted mushrooms in a garlic cream sauce over fettuccine.
+                        </p>
+
+                        <span class="drink-tag">VEGETARIAN</span>
+
+                        <button class="add-to-cart"
+                                type="button"
+                                data-name="Creamy Mushroom Pasta"
+                                data-price="215"
+                                aria-label="Order Creamy Mushroom Pasta">
+                            Order Now <span aria-hidden="true">+</span>
+                        </button>
+                    </div>
+                </li>
+
+                <li class="drink">
+                    <img src="images/Shrimp-Scampi-Pasta.jpg"
+                         alt="A plate of pasta with garlic butter shrimp"
+                         loading="lazy">
+
+                    <div class="drink-info">
+                        <div class="drink-head">
+                            <h3>Shrimp Scampi Pasta</h3>
+                            <span class="drink-price">₱260</span>
+                        </div>
+
+                        <p>
+                            Garlic butter shrimp with white wine, lemon and linguine.
+                        </p>
+
+                        <span class="drink-tag">CHEF PICK</span>
+
+                        <button class="add-to-cart"
+                                type="button"
+                                data-name="Shrimp Scampi Pasta"
+                                data-price="260"
+                                aria-label="Order Shrimp Scampi Pasta">
+                            Order Now <span aria-hidden="true">+</span>
+                        </button>
+                    </div>
+                </li>
+
+            </ul>
+        </section>
+
+
+        <!-- PET-FRIENDLY CORNER -->
+        <section id="pet-corner" class="pet-corner">
+            <div class="pet-corner-content">
+                <span class="section-kicker">OUR FOUR-LEGGED FRIENDS</span>
+
+                <h2>Good Coffee, Happy Paws!</h2>
+
+                <p>
+                    At The Coffee Paws, we believe the best café moments
+                    are even better with our furry companions.
+                    Bring your love for coffee and your love for pets
+                    together in one cozy place.
+                </p>
+
+                <a href="contact.html" class="pet-corner-button">
+                    Get in Touch
+                </a>
+            </div>
+
+            <div class="pet-corner-decoration" aria-hidden="true">
+                🐶 🐱 🐾
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>
+            &copy; 2026 The Coffee Paws.
+            Open 8:00 AM to 10:00 PM, Monday to Sunday.
+        </p>
+        <p>Good coffee. Sweet treats. Happy paws.</p>
+    </footer>
+
+    <!-- Keep your existing cart script -->
+    <script src="js/cart.js"></script>
+
+    <!-- MOBILE NAVIGATION -->
+    <script>
+        const toggle = document.querySelector('.nav-toggle');
+        const nav = document.getElementById('main-nav');
+
+        function setOpen(open) {
+            toggle.setAttribute('aria-expanded', String(open));
+            toggle.classList.toggle('change', open);
+            nav.classList.toggle('is-open', open);
+        }
+
+        toggle.addEventListener('click', () => {
+            const isOpen =
+                toggle.getAttribute('aria-expanded') === 'true';
+
+            setOpen(!isOpen);
+        });
+
+        nav.addEventListener('click', event => {
+            if (event.target.closest('a')) {
+                setOpen(false);
+            }
+        });
+
+        document.addEventListener('click', event => {
+            if (
+                !nav.contains(event.target) &&
+                !toggle.contains(event.target)
+            ) {
+                setOpen(false);
+            }
+        });
+
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape') {
+                setOpen(false);
+                toggle.focus();
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 700) {
+                setOpen(false);
+            }
+        });
+    </script>
+
+</body>
+</html>

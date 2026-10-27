@@ -1,0 +1,2411 @@
+/* =========================================================
+   The Coffee Paws – styles.css
+   Pages: index.html, about.html, menu.html
+   (+ shared header / cart / footer; contact and booking
+   reuse the header, hero image and footer)
+   White page, bold grotesque type, brown accents.
+   Playfair Display (italic) is used only for the soft accent
+   headings.
+
+   Contents
+     1. Fonts, tokens, base
+     2. Header, burger, navigation
+     3. Home hero
+     4. Shared section rules
+     5. Coming soon (home)
+     6. Offers, drinks and pastries cards (about + menu)
+     7. About page
+     8. Menu page (8b. Contact page)
+     9. Cart
+    10. Buttons
+    11. Footer
+    12. Responsive
+   ========================================================= */
+
+/* ---------- 1. Fonts, tokens, base ---------- */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,500&family=Space+Grotesk:wght@500;700&display=swap");
+
+:root {
+  --ink: #1a1512;
+  --muted: #5c5048;
+  --brown: #6b4226;
+  --brown-dark: #4e2f1a;
+  --brown-soft: #c58b5c;
+  --cream: #faf3ec;
+  --paper: #ffffff;
+  --line: #ece6e1;
+  --edge: #e3d3c3;
+  --font: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --serif: "Playfair Display", Georgia, "Times New Roman", serif;
+
+  --pad-x: clamp(20px, 5vw, 62px);
+  --header-h: 108px;
+  --ease: 0.2s ease;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--ink);
+  background: var(--paper);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+dl,
+dd,
+figure {
+  margin: 0;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Shared keyboard focus */
+a:focus-visible,
+button:focus-visible,
+.container:focus-visible {
+  outline: 2px solid var(--brown);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* ---------- 2. Header, burger, navigation ----------
+   Scoped to body > header so a <header> inside a section
+   (like .cs-head) is not turned into the site header. */
+body > header {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: var(--header-h);
+  padding: 24px var(--pad-x) 0;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-container img {
+  display: block;
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.shop-name {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Burger (mobile only) */
+.container,
+.nav-toggle {
+  display: none;
+  cursor: pointer;
+  padding: 10px;
+  margin: -10px;
+  background: none;
+  border: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bar1,
+.bar2,
+.bar3 {
+  display: block;
+  width: 28px;
+  height: 3px;
+  margin: 6px 0;
+  background-color: var(--ink);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.change .bar1 {
+  transform: translateY(9px) rotate(-45deg);
+}
+
+.change .bar2 {
+  opacity: 0;
+}
+
+.change .bar3 {
+  transform: translateY(-9px) rotate(45deg);
+}
+
+/* Navigation */
+nav {
+  margin-left: auto;
+}
+
+nav ul {
+  display: flex;
+  align-items: center;
+  gap: clamp(18px, 3vw, 40px);
+}
+
+nav a {
+  position: relative;
+  display: block;
+  padding: 6px 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
+  transition: color var(--ease);
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--brown);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+nav a:hover,
+nav a.active {
+  color: var(--brown);
+}
+
+nav a:hover::after,
+nav a.active::after {
+  transform: scaleX(1);
+}
+
+/* ---------- 3. Home hero ----------
+   <main> is a one-column grid. The hero image and text share
+   row 1; every later <section> auto-flows into the rows below,
+   so you can add or reorder sections without touching the CSS. */
+main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+#background-image {
+  grid-area: 1 / 1;
+  justify-self: end;
+  width: 58%;
+  min-height: 0;
+  margin-top: -40px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+#background-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: right bottom;
+}
+
+#Container {
+  grid-area: 1 / 1;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  min-height: min(640px, calc(100vh - var(--header-h)));
+  margin-top: -40px;
+  padding: 0 var(--pad-x);
+}
+
+.Content {
+  max-width: 540px;
+  margin-left: clamp(0px, 9vw, 170px);
+  padding: 90px 0 60px;
+}
+
+.Content > p:first-child {
+  margin: 0 0 12px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--brown);
+}
+
+.Content h1 {
+  margin: 0 0 18px;
+  font-size: 400%;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+.Content h2 {
+  margin: 0 0 24px;
+  max-width: 480px;
+  font-size: 1rem;
+  line-height: 1.7;
+  font-weight: 500;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+.Content > p:nth-of-type(2) {
+  margin: 0 0 26px;
+  padding-left: 12px;
+  border-left: 3px solid var(--brown);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--brown);
+}
+
+/* Hero buttons */
+.Content button {
+  font-family: var(--font);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 13px 26px;
+  margin: 0 10px 10px 0;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background var(--ease), color var(--ease),
+    border-color var(--ease), transform var(--ease);
+}
+
+.Content button:active {
+  transform: translateY(1px);
+}
+
+.Content button:first-of-type {
+  background: var(--brown);
+  color: #fff;
+  border: 2px solid var(--brown);
+}
+
+.Content button:first-of-type:hover {
+  background: var(--brown-dark);
+  border-color: var(--brown-dark);
+}
+
+.Content button:last-of-type {
+  background: transparent;
+  color: var(--brown);
+  border: 2px solid var(--brown);
+}
+
+.Content button:last-of-type:hover {
+  background: var(--brown);
+  color: #fff;
+}
+
+/* ---------- 4. Shared section rules ----------
+   Every section after the hero gets the same padding and a
+   1100px inner column. Backgrounds are set per section. */
+main > section:not(#background-image):not(#Container) {
+  position: relative;
+  z-index: 1;
+  padding: clamp(56px, 8vw, 96px) var(--pad-x);
+  background: var(--paper);
+}
+
+main > section:not(#background-image):not(#Container) > * {
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+main > section h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+.section-intro,
+.offers-intro,
+.drinks-intro {
+  margin-top: 0;
+  margin-bottom: 36px;
+  max-width: 540px;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* ---------- 5. Coming soon (home) ----------
+   Markup: section#coming-soon > header.cs-head + article.cs-feature
+   Each .cs-feature is a photo + copy row; every second one flips. */
+#coming-soon {
+  background: var(--cream) !important;
+}
+
+.cs-head {
+  margin-bottom: clamp(36px, 5vw, 56px);
+}
+
+.cs-head h2 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.cs-head p {
+  margin: 0;
+  max-width: 540px;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.cs-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+  align-items: center;
+  column-gap: clamp(32px, 6vw, 80px);
+}
+
+.cs-feature + .cs-feature {
+  margin-top: clamp(48px, 7vw, 88px);
+}
+
+/* Second feature: text on the left, photo on the right */
+.cs-feature:nth-of-type(even) {
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+}
+
+.cs-feature:nth-of-type(even) .cs-photo {
+  order: 2;
+}
+
+/* Photo frame */
+.cs-photo {
+  overflow: hidden;
+  background: var(--paper);
+  border: 1px solid var(--edge);
+  border-radius: 18px;
+  box-shadow: 8px 8px 0 var(--edge);
+}
+
+.cs-photo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+/* For artwork that must not be cropped, like the loyalty card.
+   Dashed edge makes it feel like a coupon. */
+.cs-photo--contain {
+  padding: clamp(16px, 3vw, 32px);
+  background: var(--paper);
+  border: 2px dashed var(--brown-soft);
+}
+
+.cs-photo--contain img {
+  object-fit: contain;
+}
+
+/* Copy */
+.cs-copy {
+  max-width: 440px;
+}
+
+.cs-eyebrow {
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 4px 14px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--brown);
+  background: var(--paper);
+  border: 1px solid var(--edge);
+  border-radius: 999px;
+}
+
+.cs-copy h3 {
+  margin: 0 0 12px;
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3.6vw, 2.4rem);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--ink);
+}
+
+.cs-copy p {
+  margin: 0 0 24px;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+.cs-copy p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- 6. Offers, drinks and pastries ---------- */
+
+/* Special offers (coupon cards) */
+.offers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+  gap: 20px;
+}
+
+.offer-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24px;
+  background: var(--cream);
+  border: 2px dashed var(--brown-soft);
+  border-radius: 18px;
+  transition: border-color var(--ease);
+}
+
+.offer-card:hover {
+  border-color: var(--brown);
+}
+
+.offer-badge {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 2px dotted var(--brown-soft);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--brown);
+}
+
+.offer-card h3 {
+  margin: 0 0 8px;
+  font-size: 1.3rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  font-weight: 700;
+}
+
+.offer-card p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* Featured drinks / pastries */
+#featured-drinks {
+  background: var(--cream) !important;
+}
+
+#featured-pastries .drink {
+  background: var(--cream);
+}
+
+#featured-pastries .drink-tag {
+  background: var(--paper);
+}
+
+.drinks-intro {
+  margin-bottom: 28px;
+}
+
+.drinks-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
+  gap: 24px;
+}
+
+/* Menu: Hot Drinks always in one row of four on desktop.
+   Add class="drinks-list drinks-row" to that <ul>. */
+.drinks-row {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.drinks-row .drink-info {
+  padding: 16px 14px 18px;
+}
+
+.drinks-row .drink-head {
+  flex-wrap: wrap;
+  gap: 4px 10px;
+}
+
+.drinks-row .drink-head h3 {
+  font-size: 1.1rem;
+}
+
+.drinks-row .drink-price {
+  font-size: 1rem;
+}
+
+.drinks-row .drink p {
+  font-size: 0.9rem;
+}
+
+/* Six featured drinks in two even rows of three.
+   Add class="drinks-list drinks-row-3" to that <ul>. */
+.drinks-row-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.drink {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--paper);
+  border: 1px solid var(--edge);
+  border-radius: 18px;
+}
+
+.drink > img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--cream);
+}
+
+.drink-info {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px 20px 22px;
+}
+
+/* With a .drink-leader the dotted line fills the gap (About page);
+   without one the price is pushed to the right (Menu page). */
+.drink-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+}
+
+.drink-head h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  font-weight: 700;
+}
+
+.drink-leader {
+  flex: 1;
+  min-width: 16px;
+  border-bottom: 2px dotted var(--brown-soft);
+  transform: translateY(-4px);
+}
+
+.drink-price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--brown);
+}
+
+.drink p {
+  margin: 8px 0 16px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.drink-tag {
+  display: inline-block;
+  margin-top: auto;
+  padding: 3px 12px;
+  background: var(--paper);
+  border: 1px solid var(--edge);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--brown);
+}
+
+.drinks-link {
+  display: inline-block;
+  margin-top: 32px;
+  font-weight: 700;
+  color: var(--brown);
+  text-underline-offset: 4px;
+  transition: color var(--ease);
+}
+
+.drinks-link:hover {
+  color: var(--brown-dark);
+}
+
+/* ---------- 7. About page ----------
+   Sections: about-hero, about-story, about-values,
+   pet-departments, special-offers, featured drinks/pastries, about-visit,
+   about-cta */
+
+.about-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+/* Intro: headline left, photo right */
+.about-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+  align-items: center;
+  column-gap: clamp(32px, 6vw, 80px);
+}
+
+.about-hero > * {
+  max-width: none;
+}
+
+.about-hero-text {
+  max-width: 560px;
+  justify-self: end;
+}
+
+.about-eyebrow {
+  margin: 0 0 12px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--brown);
+}
+
+main > .about-hero h1 {
+  margin: 0 0 18px;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+.about-lead {
+  margin: 0;
+  max-width: 480px;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+.about-hero-img {
+  display: block;
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  background: var(--cream);
+  border-radius: 240px 240px 18px 18px; /* arched window shape */
+}
+
+/* Story: photo left, text right, cream background */
+.about-story {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  align-items: center;
+  column-gap: clamp(32px, 6vw, 80px);
+  background: var(--cream) !important;
+}
+
+.about-story > * {
+  max-width: none !important;
+}
+
+.about-story img {
+  display: block;
+  justify-self: end;
+  width: 100%;
+  max-width: 460px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  background: var(--paper);
+  border: 1px solid var(--edge);
+  border-radius: 18px;
+}
+
+.about-story-text {
+  max-width: 500px;
+}
+
+.about-story-text p,
+.about-shop {
+  margin: 0 0 16px;
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+/* Values: three columns divided by thin lines, no cards */
+.values-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+  margin-top: 36px;
+  border-top: 2px solid var(--ink);
+}
+
+.values-list li {
+  padding: 24px 28px 8px 0;
+}
+
+.values-list li + li {
+  padding-left: 28px;
+  border-left: 1px solid var(--line);
+}
+
+.values-list h3 {
+  margin: 0 0 8px;
+  font-size: 1.3rem;
+  letter-spacing: -0.01em;
+}
+
+.values-list p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* Meet the paws: round portraits */
+.about-paws {
+  background: var(--cream) !important;
+}
+
+.paws-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+  gap: 32px 24px;
+  margin-top: 36px;
+}
+
+.paws-grid li {
+  text-align: center;
+}
+
+.paws-grid img {
+  display: block;
+  width: min(180px, 100%);
+  aspect-ratio: 1;
+  margin: 0 auto 14px;
+  object-fit: cover;
+  background: var(--paper);
+  border: 3px solid var(--paper);
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px var(--brown-soft);
+}
+
+.paws-grid h3 {
+  margin: 0 0 2px;
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--brown);
+}
+
+.paws-grid p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* Visit: hours list with dotted leaders, like the drink prices */
+.about-visit {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  column-gap: clamp(32px, 6vw, 80px);
+}
+
+.about-visit > * {
+  max-width: none;
+}
+
+.visit-hours {
+  display: grid;
+  gap: 14px;
+  max-width: 460px;
+}
+
+.visit-hours div {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.visit-hours dt {
+  order: 0;
+  font-weight: 700;
+}
+
+.visit-hours div::after {
+  content: "";
+  order: 1;
+  flex: 1;
+  min-width: 16px;
+  border-bottom: 2px dotted var(--brown-soft);
+  transform: translateY(-4px);
+}
+
+.visit-hours dd {
+  order: 2;
+  font-weight: 700;
+  color: var(--brown);
+}
+
+/* Closing call to action */
+.about-cta {
+  text-align: center;
+  background: var(--brown-dark) !important;
+  color: #f3e9e1;
+}
+
+.about-cta h2 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500 !important;
+  letter-spacing: 0 !important;
+  color: #fff;
+}
+
+.about-cta p {
+  margin: 0 auto 28px;
+  max-width: 480px;
+  line-height: 1.7;
+  color: #e3cfc0;
+}
+
+.about-cta .about-actions {
+  justify-content: center;
+}
+
+/* Pet departments (rentals):
+   intro with 3 steps + group photo, then a dog card and a cat card.
+   Each card has a photo label, a small roster, and a dotted hours list. */
+.pet-departments {
+  background: var(--cream) !important;
+}
+
+.pet-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+  align-items: center;
+  column-gap: clamp(32px, 6vw, 80px);
+  margin-bottom: clamp(40px, 6vw, 64px);
+}
+
+.pet-intro-text {
+  max-width: 540px;
+}
+
+.pet-intro .section-intro {
+  margin-bottom: 28px;
+}
+
+.rental-steps {
+  display: grid;
+  gap: 18px;
+  counter-reset: step;
+}
+
+.rental-steps li {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  column-gap: 14px;
+  align-items: start;
+  counter-increment: step;
+}
+
+.rental-steps li::before {
+  content: counter(step);
+  grid-row: span 2;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--brown);
+  border-radius: 50%;
+}
+
+.rental-steps strong {
+  font-size: 1.05rem;
+  line-height: 1.3;
+}
+
+.rental-steps span {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.pets-group {
+  margin: 0;
+}
+
+.pets-group img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--paper);
+  border: 1px solid var(--edge);
+  border-radius: 18px;
+  box-shadow: 8px 8px 0 var(--edge);
+}
+
+.pet-dept-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.pet-dept {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--paper);
+  border: 1px solid var(--edge);
+  border-radius: 18px;
+}
+
+.pet-dept-photo {
+  position: relative;
+}
+
+.pet-dept-photo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  background: var(--cream);
+}
+
+/* "Dog department" label sits on the photo */
+.pet-dept-photo .cs-eyebrow {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  margin: 0;
+}
+
+.pet-dept-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24px 24px 26px;
+}
+
+.pet-dept h3 {
+  margin: 0 0 8px;
+  font-family: var(--serif);
+  font-size: clamp(1.7rem, 3vw, 2.1rem);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.pet-dept p {
+  margin: 0 0 18px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.pet-dept .pet-label {
+  margin: 0 0 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brown);
+}
+
+/* Small round portraits with names */
+.pet-roster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.pet-roster li {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  width: 64px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.pet-roster img {
+  display: block;
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  background: var(--cream);
+  border: 2px solid var(--paper);
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px var(--brown-soft);
+}
+
+/* Hours list with dotted leaders, like the drink prices */
+.rental-options {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 24px;
+  padding: 16px 0;
+  border-top: 1px dotted var(--brown-soft);
+  border-bottom: 1px dotted var(--brown-soft);
+}
+
+.rental-options li {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-weight: 700;
+}
+
+.rental-options li::after {
+  content: "";
+  order: 1;
+  flex: 1;
+  min-width: 16px;
+  border-bottom: 2px dotted var(--brown-soft);
+  transform: translateY(-4px);
+}
+
+.rental-tag {
+  padding: 2px 10px;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: var(--brown);
+  background: var(--cream);
+  border: 1px solid var(--edge);
+  border-radius: 999px;
+}
+
+.rental-price {
+  order: 2;
+  color: var(--brown);
+}
+
+.pet-dept .about-btn {
+  align-self: stretch;
+  margin-top: auto;
+}
+
+.pet-note {
+  margin-top: 28px;
+  margin-bottom: 0;
+  font-size: 0.9rem;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* ---------- 8. Menu page ----------
+   Sections: menu-welcome, menu-categories, menu-section
+   (hot drinks, special treats), pet-corner */
+
+/* Keep the content in a 1100px column on wide screens.
+   !important is needed to beat the shared "main > section" rule,
+   same as on the About page. */
+main > .menu-welcome,
+main > .pet-corner,
+main > .contact-main {
+  padding-left: max(var(--pad-x), calc((100% - 1100px) / 2)) !important;
+  padding-right: max(var(--pad-x), calc((100% - 1100px) / 2)) !important;
+}
+
+main > .menu-welcome > *,
+main > .pet-corner > *,
+main > .contact-main > * {
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Welcome banner */
+.menu-welcome {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: clamp(24px, 6vw, 80px);
+}
+
+.welcome-content {
+  max-width: 560px;
+}
+
+.welcome-label {
+  display: inline-block;
+  margin-bottom: 16px;
+  padding: 4px 14px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--brown);
+  background: var(--cream);
+  border: 1px solid var(--edge);
+  border-radius: 999px;
+}
+
+.menu-welcome h1 {
+  margin: 0 0 18px;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+.menu-welcome p {
+  margin: 0 0 28px;
+  max-width: 480px;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+.welcome-paw {
+  display: grid;
+  place-items: center;
+  width: clamp(140px, 20vw, 240px);
+  aspect-ratio: 1;
+  font-size: clamp(4rem, 9vw, 7rem);
+  line-height: 1;
+  background: var(--cream);
+  border: 1px solid var(--edge);
+  border-radius: 50%;
+  box-shadow: 8px 8px 0 var(--edge);
+  transform: rotate(-8deg);
+}
+
+/* Category shortcuts (sticky chips).
+   Scoped to main so the header nav styles don't leak in. */
+main > .menu-categories {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  gap: 10px;
+  margin: 0;
+  padding: 14px var(--pad-x);
+  overflow-x: auto;
+  white-space: nowrap;
+  background: rgba(255, 255, 255, 0.94);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  scrollbar-width: none;
+}
+
+main > .menu-categories::-webkit-scrollbar {
+  display: none;
+}
+
+/* Centered when it fits, scrollable from the left when it doesn't */
+main > .menu-categories a:first-child {
+  margin-left: auto;
+}
+
+main > .menu-categories a:last-child {
+  margin-right: auto;
+}
+
+main > .menu-categories a {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  padding: 8px 18px;
+  font-size: 0.85rem;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--brown);
+  background: var(--cream);
+  border: 1px solid var(--edge);
+  border-radius: 999px;
+  transition: background var(--ease), color var(--ease),
+    border-color var(--ease);
+}
+
+main > .menu-categories a::after {
+  display: none;
+}
+
+main > .menu-categories a:hover {
+  color: #fff;
+  background: var(--brown);
+  border-color: var(--brown);
+}
+
+/* Menu sections */
+.menu-section,
+.pet-corner {
+  scroll-margin-top: 56px; /* clears the sticky chips */
+}
+
+.section-heading {
+  margin-bottom: 32px;
+}
+
+.section-kicker {
+  display: block;
+  margin: 0 0 12px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--brown);
+}
+
+.section-heading .drinks-intro {
+  margin-bottom: 0;
+}
+
+/* Special Treats: three across on desktop */
+#featured-pastries .drinks-list {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Alternating backgrounds down the menu:
+   Hot Drinks cream, Cold Drinks white, Special Treats cream,
+   Pasta white, pet corner brown. White sections get cream cards. */
+#cold-drinks .drink,
+#pastas .drink {
+  background: var(--cream);
+}
+
+#cold-drinks .drink-tag,
+#pastas .drink-tag {
+  background: var(--paper);
+}
+
+#featured-pastries.menu-section--tint {
+  background: var(--cream) !important;
+}
+
+#featured-pastries.menu-section--tint .drink {
+  background: var(--paper);
+}
+
+/* Pet-friendly corner */
+.pet-corner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: clamp(24px, 6vw, 80px);
+  background: var(--brown-dark) !important;
+  color: #f3e9e1;
+}
+
+.pet-corner-content {
+  max-width: 560px;
+}
+
+.pet-corner .section-kicker {
+  color: var(--brown-soft);
+}
+
+.pet-corner h2 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: #fff;
+}
+
+.pet-corner p {
+  margin: 0 0 28px;
+  max-width: 480px;
+  line-height: 1.7;
+  color: #e3cfc0;
+}
+
+.pet-corner-decoration {
+  font-size: clamp(2.6rem, 6vw, 4.5rem);
+  line-height: 1.2;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+}
+
+/* ---------- 8b. Contact page ----------
+   Sections: contact-intro, contact-main (details + booking form).
+   The form is HTML and CSS only: radio buttons are styled as pills
+   and cards, and the thank-you message shows through :target. */
+
+/* Intro */
+main > .contact-intro {
+  padding-bottom: clamp(24px, 4vw, 40px) !important;
+}
+
+main > .contact-intro h1 {
+  margin: 0 0 18px;
+  max-width: 720px;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+/* Details + form side by side */
+.contact-main {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  align-items: start;
+  column-gap: clamp(32px, 6vw, 80px);
+  background: var(--cream) !important;
+}
+
+.contact-info .section-intro {
+  margin-bottom: 28px;
+}
+
+.contact-details {
+  display: grid;
+  border-top: 2px solid var(--ink);
+}
+
+.contact-details div {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--edge);
+}
+
+.contact-details dt {
+  margin-bottom: 4px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brown);
+}
+
+.contact-details dd {
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.contact-details a {
+  color: inherit;
+  text-underline-offset: 4px;
+}
+
+.contact-details a:hover,
+.contact-rates a:hover {
+  color: var(--brown);
+}
+
+.contact-rates {
+  margin: 24px 0 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.contact-rates a {
+  font-weight: 700;
+  color: var(--brown);
+  text-underline-offset: 4px;
+}
+
+/* Booking card */
+.booking-form,
+.form-thanks {
+  padding: clamp(20px, 3vw, 32px);
+  background: var(--paper);
+  border: 1px solid var(--edge);
+  border-radius: 18px;
+  box-shadow: 8px 8px 0 var(--edge);
+}
+
+.booking-form {
+  display: grid;
+  gap: 24px;
+}
+
+.booking-form h2,
+.form-thanks h2 {
+  margin: 0;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.form-group {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.form-group legend,
+.field {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.form-group legend {
+  padding: 0;
+  margin-bottom: 10px;
+}
+
+.form-hint {
+  margin: 10px 0 0;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 11px 14px;
+  font: inherit;
+  font-weight: 500;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1.5px solid #d9c9b9;
+  border-radius: 10px;
+}
+
+.field textarea {
+  resize: vertical;
+}
+
+.field input:focus-visible,
+.field textarea:focus-visible {
+  outline: 2px solid var(--brown);
+  outline-offset: 2px;
+}
+
+/* Radio buttons shown as pills (hours) and cards (department, payment).
+   The real input stays on top, invisible, so it is still keyboard and
+   screen-reader friendly. */
+.choice-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.choice-grid--hours {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.choice-grid--cards {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.choice {
+  position: relative;
+  display: block;
+}
+
+.choice input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.choice span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 14px;
+  font-weight: 700;
+  color: var(--brown);
+  background: var(--paper);
+  border: 1.5px solid #d9c9b9;
+  border-radius: 999px;
+  transition: background var(--ease), color var(--ease),
+    border-color var(--ease);
+}
+
+.choice:hover span {
+  border-color: var(--brown);
+}
+
+.choice input:checked + span {
+  color: #fff;
+  background: var(--brown);
+  border-color: var(--brown);
+}
+
+.choice input:focus-visible + span {
+  outline: 3px solid var(--brown-soft);
+  outline-offset: 3px;
+}
+
+.choice--card span {
+  display: grid;
+  justify-content: stretch;
+  gap: 2px;
+  padding: 14px 16px;
+  text-align: left;
+  border-radius: 14px;
+}
+
+.choice--card small {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.choice--card input:checked + span small {
+  color: #f3e9e1;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+.form-reset {
+  font-family: var(--font);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.form-reset:hover {
+  color: var(--brown);
+}
+
+/* Thank-you message: hidden until the form sends you to #booking-thanks,
+   then it replaces the form. "Make another booking" links back to #booking. */
+.form-thanks {
+  display: none;
+  background: #eef6ec;
+  border-color: #b9d6b3;
+  box-shadow: 8px 8px 0 #d3e6cf;
+}
+
+.form-thanks:target {
+  display: grid;
+  gap: 14px;
+  justify-items: start;
+}
+
+.form-thanks:target + .booking-form {
+  display: none;
+}
+
+.form-thanks p {
+  margin: 0;
+  line-height: 1.7;
+  color: #2f5a2a;
+}
+
+.form-thanks h2 {
+  color: #2f5a2a;
+}
+
+/* ---------- 9. Cart ---------- */
+
+/* Cart button (header) */
+.cart-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+  padding: 9px 16px;
+  font-family: var(--font);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brown);
+  background: transparent;
+  border: 2px solid var(--brown);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background var(--ease), color var(--ease);
+}
+
+.cart-toggle:hover {
+  color: #fff;
+  background: var(--brown);
+}
+
+.cart-toggle svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+}
+
+.cart-count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  font-size: 0.75rem;
+  letter-spacing: 0;
+  color: #fff;
+  background: var(--brown);
+  border-radius: 999px;
+}
+
+.cart-toggle:hover .cart-count {
+  color: var(--brown);
+  background: #fff;
+}
+
+/* Cart panel (built by js/cart.js) */
+body.cart-open {
+  overflow: hidden;
+}
+
+.cart-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: rgba(26, 21, 18, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s;
+}
+
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  width: min(420px, 100%);
+  background: var(--paper);
+  box-shadow: -12px 0 32px rgba(0, 0, 0, 0.12);
+  transform: translateX(100%);
+  visibility: hidden;
+  transition: transform 0.3s ease, visibility 0.3s;
+}
+
+.cart-open .cart-overlay {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cart-open .cart-drawer {
+  transform: none;
+  visibility: visible;
+}
+
+.cart-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+.cart-head h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  letter-spacing: -0.01em;
+}
+
+.cart-close {
+  width: 40px;
+  height: 40px;
+  font-size: 1.8rem;
+  line-height: 1;
+  color: var(--ink);
+  background: none;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.cart-close:hover {
+  background: var(--cream);
+}
+
+.cart-body {
+  flex: 1;
+  padding: 8px 24px 24px;
+  overflow-y: auto;
+}
+
+.cart-empty {
+  margin: 0;
+  padding: 24px 0;
+  color: var(--muted);
+}
+
+.cart-items li {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 10px 12px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.cart-item-name {
+  font-weight: 700;
+}
+
+.cart-item-total {
+  font-weight: 700;
+  color: var(--brown);
+}
+
+.cart-qty {
+  display: inline-flex;
+  align-items: center;
+  justify-self: start;
+  border: 1px solid var(--edge);
+  border-radius: 999px;
+}
+
+.cart-qty button {
+  width: 34px;
+  height: 34px;
+  font-family: var(--font);
+  font-size: 1.1rem;
+  color: var(--brown);
+  background: none;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.cart-qty button:hover {
+  background: var(--cream);
+}
+
+.cart-qty span {
+  min-width: 28px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.cart-remove,
+.cart-back {
+  font-family: var(--font);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.cart-remove {
+  justify-self: end;
+}
+
+.cart-remove:hover,
+.cart-back:hover {
+  color: var(--brown);
+}
+
+.cart-form {
+  display: grid;
+  gap: 14px;
+  padding-top: 24px;
+}
+
+.cart-form h3,
+.cart-done h3 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.cart-form label {
+  display: grid;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.cart-form input,
+.cart-form textarea {
+  width: 100%;
+  padding: 11px 14px;
+  font: inherit;
+  font-weight: 500;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1.5px solid #d9c9b9;
+  border-radius: 10px;
+}
+
+.cart-form input:focus-visible,
+.cart-form textarea:focus-visible {
+  outline: 2px solid var(--brown);
+  outline-offset: 2px;
+}
+
+.cart-hint {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.cart-back {
+  justify-self: start;
+}
+
+.cart-foot {
+  padding: 20px 24px 24px;
+  background: var(--cream);
+  border-top: 1px solid var(--line);
+}
+
+.cart-total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  font-size: 1.05rem;
+}
+
+.cart-total strong {
+  font-size: 1.5rem;
+  color: var(--brown);
+}
+
+.cart-done {
+  display: grid;
+  gap: 14px;
+  padding-top: 24px;
+}
+
+.cart-done p {
+  margin: 0;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.cart-summary {
+  padding: 14px 0;
+  border-top: 1px dotted var(--brown-soft);
+  border-bottom: 1px dotted var(--brown-soft);
+}
+
+.cart-summary li {
+  padding: 3px 0;
+}
+
+.cart-done .cart-summary-total {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* ---------- 10. Buttons ----------
+   One shared style for .cs-btn, .about-btn, .welcome-btn,
+   .pet-corner-button, .add-to-cart, .cart-checkout, .cart-send.
+   Hover: the button lifts and gets a small offset shadow,
+   the same idea as the photo frames in Coming Soon.
+   Press: it sinks back into the shadow. */
+.cs-btn,
+.about-btn,
+.welcome-btn,
+.pet-corner-button,
+.add-to-cart,
+.cart-checkout,
+.cart-send {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 26px;
+  font-family: var(--font);
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: #fff;
+  background: var(--brown);
+  border: 2px solid var(--brown);
+  border-radius: 999px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background var(--ease), color var(--ease),
+    border-color var(--ease), transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+/* Full-width buttons (cart and card buttons) */
+.add-to-cart,
+.cart-checkout,
+.cart-send {
+  display: flex;
+  width: 100%;
+  padding: 12px 20px;
+  white-space: normal;
+}
+
+.add-to-cart {
+  margin-top: 16px;
+  margin-bottom: 4px; /* keeps the card edge from clipping the shadow */
+}
+
+/* Outline version */
+.about-btn.outline {
+  color: var(--brown);
+  background: transparent;
+}
+
+/* Hover: darker fill, lift, offset shadow */
+.cs-btn:hover,
+.about-btn:hover,
+.welcome-btn:hover,
+.add-to-cart:hover,
+.cart-checkout:hover:not(:disabled),
+.cart-send:hover {
+  background: var(--brown-dark);
+  border-color: var(--brown-dark);
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--brown-soft);
+}
+
+.about-btn.outline:hover {
+  color: #fff;
+  background: var(--brown);
+  border-color: var(--brown);
+}
+
+/* Press: sink into the shadow */
+.cs-btn:active,
+.about-btn:active,
+.welcome-btn:active,
+.add-to-cart:active,
+.cart-checkout:active:not(:disabled),
+.cart-send:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--brown-soft);
+}
+
+/* Added state for "Order now" */
+.add-to-cart.added {
+  color: var(--brown);
+  background: var(--paper);
+}
+
+/* Disabled checkout */
+.cart-checkout:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* The arrow inside .cs-btn slides right on hover */
+.cs-btn span {
+  display: inline-block;
+  transition: transform 0.18s ease;
+}
+
+.cs-btn:hover span {
+  transform: translateX(4px);
+}
+
+/* Clear keyboard focus, offset so it never touches the shadow */
+.cs-btn:focus-visible,
+.about-btn:focus-visible,
+.welcome-btn:focus-visible,
+.pet-corner-button:focus-visible,
+.add-to-cart:focus-visible,
+.cart-checkout:focus-visible,
+.cart-send:focus-visible {
+  outline: 3px solid var(--brown-soft);
+  outline-offset: 4px;
+  border-radius: 999px;
+}
+
+/* Buttons on the dark About call-to-action */
+.about-cta .about-btn {
+  color: var(--brown-dark);
+  background: #fff;
+  border-color: #fff;
+}
+
+.about-cta .about-btn:hover {
+  background: var(--cream);
+  border-color: var(--cream);
+  box-shadow: 4px 4px 0 rgba(255, 255, 255, 0.35);
+}
+
+.about-cta .about-btn:active {
+  box-shadow: 1px 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.about-cta .about-btn.outline {
+  color: #fff;
+  background: transparent;
+  border-color: #fff;
+}
+
+.about-cta .about-btn.outline:hover {
+  color: var(--brown-dark);
+  background: #fff;
+  border-color: #fff;
+}
+
+/* White button on the dark Menu pet corner */
+.pet-corner-button {
+  color: var(--brown-dark);
+  background: #fff;
+  border-color: #fff;
+}
+
+.pet-corner-button:hover {
+  background: var(--cream);
+  border-color: var(--cream);
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 rgba(255, 255, 255, 0.35);
+}
+
+.pet-corner-button:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+/* ---------- 11. Footer ---------- */
+footer {
+  min-height: 40px;
+  padding: 36px var(--pad-x);
+  background: var(--brown-dark);
+  color: #f3e9e1;
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+footer p {
+  margin: 0;
+}
+
+footer p + p {
+  margin-top: 6px;
+}
+
+footer a {
+  color: inherit;
+  text-underline-offset: 3px;
+}
+
+footer a:hover {
+  color: #fff;
+}
+
+/* ---------- 12. Responsive ---------- */
+
+/* Tablet */
+@media (max-width: 900px) {
+  :root {
+    --header-h: 96px;
+  }
+
+  nav a {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+  }
+
+  #background-image {
+    width: 52%;
+  }
+
+  .Content {
+    max-width: 400px;
+    margin-left: clamp(0px, 4vw, 40px);
+  }
+
+  /* Drink grids: 2 columns */
+  .drinks-row,
+  .drinks-row-3,
+  #featured-pastries .drinks-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* Two-column sections stack */
+  .cs-feature,
+  .cs-feature:nth-of-type(even),
+  .about-hero,
+  .about-story,
+  .about-visit,
+  .contact-main,
+  .pet-intro,
+  .pet-dept-grid,
+  .menu-welcome,
+  .pet-corner {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 32px;
+  }
+
+  /* Photo always on top when stacked */
+  .cs-feature:nth-of-type(even) .cs-photo {
+    order: 0;
+  }
+
+  .cs-copy {
+    max-width: 100%;
+  }
+
+  .about-hero-text {
+    justify-self: start;
+  }
+
+  .about-story img,
+  .about-hero-img {
+    justify-self: center;
+  }
+
+  .welcome-paw {
+    width: 130px;
+    font-size: 3.6rem;
+    justify-self: start;
+    order: -1;
+  }
+}
+
+/* Mobile */
+@media (max-width: 680px) {
+  :root {
+    --header-h: 84px;
+  }
+
+  body > header {
+    padding: 16px var(--pad-x);
+  }
+
+  .logo-container img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .container,
+  .nav-toggle {
+    display: block;
+    order: 2;
+  }
+
+  .cart-toggle {
+    order: 1;
+    margin-left: auto;
+  }
+
+  #main-nav {
+    margin-left: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--paper);
+    border-top: 1px solid var(--line);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+  }
+
+  .container.change ~ #main-nav,
+  .nav-toggle.change ~ #main-nav,
+  .nav-toggle[aria-expanded="true"] ~ #main-nav,
+  #main-nav.open,
+  #main-nav.is-open {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 6px var(--pad-x) 14px;
+  }
+
+  nav a {
+    padding: 14px 0;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  nav li:last-child a {
+    border-bottom: 0;
+  }
+
+  nav a::after {
+    display: none;
+  }
+
+  #background-image {
+    align-self: end;
+    justify-self: stretch;
+    width: 100%;
+    height: 270px;
+    margin-top: 0;
+  }
+
+  #Container {
+    align-items: flex-start;
+    min-height: 0;
+    margin-top: 0;
+    padding: 0 var(--pad-x) 280px;
+  }
+
+  .Content {
+    max-width: 100%;
+    margin-left: 0;
+    padding: 24px 0;
+  }
+
+  .Content button {
+    flex: 1;
+  }
+
+  .cs-photo {
+    box-shadow: 5px 5px 0 var(--edge);
+  }
+
+  /* Easier tap targets; the two About buttons share a row */
+  .cs-btn,
+  .about-btn,
+  .welcome-btn,
+  .pet-corner-button {
+    padding: 14px 24px;
+  }
+
+  .about-actions .about-btn {
+    flex: 1 1 140px;
+  }
+
+  /* Dividers turn horizontal when columns stack */
+  .values-list li,
+  .values-list li + li {
+    padding: 22px 0 6px;
+    border-left: 0;
+  }
+
+  .values-list li + li {
+    border-top: 1px solid var(--line);
+  }
+
+  /* Menu */
+  .welcome-paw {
+    display: none;
+  }
+
+  main > .menu-categories {
+    padding: 12px var(--pad-x);
+  }
+}
+
+/* Small phones: drink grids in 1 column */
+@media (max-width: 560px) {
+  .form-row,
+  .choice-grid--cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .drinks-row,
+  .drinks-row-3,
+  #featured-pastries .drinks-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  * {
+    transition: none !important;
+  }
+
+  .cs-btn:hover,
+  .about-btn:hover,
+  .welcome-btn:hover,
+  .pet-corner-button:hover,
+  .add-to-cart:hover,
+  .cart-checkout:hover:not(:disabled),
+  .cart-send:hover {
+    transform: none;
+  }
+}
